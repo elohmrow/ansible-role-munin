@@ -1,0 +1,4 @@
+# [1]
+- name: iptables open 80
+  command: iptables -I INPUT -p tcp --destination-port 80 -j ACCEPT
+  become: yes
