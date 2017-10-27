@@ -1,0 +1,4 @@
+# [1]
+- name: add edited munin-node.conf
+  copy: src=munin-node.conf dest=/etc/munin/ mode=0644
+  become: yes

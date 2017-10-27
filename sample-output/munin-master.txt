@@ -1,0 +1,36 @@
+ansible-playbook munin-master/playbook.yml -i munin-master/hosts --extra-vars "ansible_sudo_pass=YOUR_REMOTE_PASSWD"
+
+PLAY [monitors] ******************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************
+ok: [176.58.102.50]
+
+TASK [munin-master : include] ****************************************************************************************
+included: /Users/bandersen/munin-ibilly/munin-master/tasks/Debian.yml for 176.58.102.50
+
+TASK [munin-master : Include OS-specific variables] ******************************************************************
+ok: [176.58.102.50]
+
+TASK [munin-master : Install list of packages] ***********************************************************************
+ok: [176.58.102.50] => (item=[u'apache2', u'libcgi-fast-perl', u'libapache2-mod-fcgid', u'munin'])
+
+TASK [munin-master : include] ****************************************************************************************
+included: /Users/bandersen/munin-ibilly/munin-master/tasks/common.yml for 176.58.102.50
+
+TASK [munin-master : iptables open 80] *******************************************************************************
+changed: [176.58.102.50]
+
+TASK [munin-master : add htmldir and set permissions] ****************************************************************
+ok: [176.58.102.50]
+
+TASK [munin-master : add edited munin.conf] **************************************************************************
+changed: [176.58.102.50]
+
+TASK [munin-master : add edited apache24.conf] ***********************************************************************
+ok: [176.58.102.50]
+
+TASK [munin-master : include] ****************************************************************************************
+skipping: [176.58.102.50]
+
+PLAY RECAP ***********************************************************************************************************
+176.58.102.50              : ok=9    changed=2    unreachable=0    failed=0

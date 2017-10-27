@@ -38,4 +38,5 @@ This free software; you can redistribute it and/or modify it under the terms of 
 
 ## Acknowledgments
 
-* kdw
+* kdw for the idea
+* http://do.co/2hfxPwm for the guidance
