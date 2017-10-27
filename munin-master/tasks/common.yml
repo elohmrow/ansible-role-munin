@@ -2,3 +2,23 @@
 - name: iptables open 80
   command: iptables -I INPUT -p tcp --destination-port 80 -j ACCEPT
   become: yes
+
+# [2] 
+- name: add htmldir and set permissions
+  file:
+    path: /var/www/html/munin 
+    owner: munin
+    group: munin
+    mode: 0755
+    state: directory
+  become: yes
+
+# [3]
+- name: add edited munin.conf
+  copy: src=munin.conf dest=/etc/munin/ mode=0644
+  become: yes
+
+# [4]
+- name: add edited apache24.conf
+  copy: src=apache24.conf dest=/etc/munin/ mode=0644
+  become: yes

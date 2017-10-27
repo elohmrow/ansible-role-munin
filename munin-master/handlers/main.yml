@@ -1,2 +1,4 @@
 - name: start apache2
-  service: name=apache2 state=started become=yes
+  service: name=apache2 state=reloaded become=yes
+- name: start munin monitor
+  service: name=munin-node state=reloaded become=yes
