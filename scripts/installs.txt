@@ -1,0 +1,23 @@
+If the perl and/or python scripts herein are later used, these items will need to be added to playbooks.
+
+==========================
+| for the python scripts |
+==========================
+	[1] pip install --user jira
+
+        ==comment
+        - pip:
+            name: jira
+        ==cut
+
+========================
+| for the perl scripts |
+========================
+	[1] sudo cpan install Email::Sender
+
+        ==comment
+        - cpanm:
+            name: Email::Sender
+            system_lib: yes
+          become: yes
+        ==cut
