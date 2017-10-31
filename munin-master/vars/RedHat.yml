@@ -3,3 +3,4 @@ packages:
   - libcgi-fast-perl 
   - libapache2-mod-fcgid
   - munin
+  - mailx

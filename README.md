@@ -4,7 +4,20 @@ Ansible Roles for installing munin monitors and nodes.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See Installing for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See Installing for notes on how to deploy the project on a live system.  Look in the hosts file on master for the url to a live demo.  
+
+You can check out any individual node by making a URL like so:
+
+http://$MUNIN_MASTER_IP/munin/$MUNIN_NODE_NAME/$MUNIN_NODE_NAME/$PLUGIN_NAME.html
+
+For example: http://176.58.102.50/munin/MuninMaster/MuninMaster/threads.html
+For example: http://176.58.102.50/munin/MuninNode1/MuninNode1/load.html
+
+To figure out how to properly specify plugins in alert stanzas, on your master, do something like:
+
+```
+sudo munin-run $PLUGIN_NAME
+```
 
 ### Prerequisites
 
@@ -39,4 +52,4 @@ This free software; you can redistribute it and/or modify it under the terms of 
 ## Acknowledgments
 
 * kdw for the idea
-* http://do.co/2hfxPwm for the guidance
+* http://do.co/2hfxPwm for the original, basic guidance

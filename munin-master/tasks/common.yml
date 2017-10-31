@@ -1,9 +1,12 @@
-# [1]
+#- name: iptables open 25
+#  command: iptables -I INPUT -p tcp -m tcp --dport 25 -j ACCEPT
+#  become: yes
+# ^ exim does that already
+
 - name: iptables open 80
   command: iptables -I INPUT -p tcp --destination-port 80 -j ACCEPT
   become: yes
 
-# [2] 
 - name: add htmldir and set permissions
   file:
     path: /var/www/html/munin 
@@ -13,12 +16,29 @@
     state: directory
   become: yes
 
-# [3]
+#- name: add cpan module Email::Sender
+#  cpanm:
+#    name: Email::Sender
+#    system_lib: yes
+#  become: yes
+# ^ should use 'perl(Email::Sender)' for RH-alikes and 'libemail-sender-perl' for Deb-alikes 
+
 - name: add edited munin.conf
   copy: src=munin.conf dest=/etc/munin/ mode=0644
   become: yes
 
-# [4]
+#- name: add email alert configuration
+#  copy: src=alerts.conf dest=/etc/munin/munin-conf.d/ mode=0644
+#  become: yes
+
 - name: add edited apache24.conf
   copy: src=apache24.conf dest=/etc/munin/ mode=0644
   become: yes
+
+#- name: add perl alert script
+#  copy: src=send_email.pl dest=/etc/munin/ mode=0755
+#  become: yes
+#
+#- name: add python alert script # really, just pick one!
+#  copy: src=send_email.py dest=/etc/munin/ mode=0755
+#  become: yes
