@@ -21,6 +21,13 @@
         state: absent # remove munin-node
       when: ansible_os_family == "RedHat"
       become: yes
-    - name: iptables close 4949
-      command: iptables -I INPUT -p tcp --destination-port 4949 -j DROP
+
+    - name: close port 4949
+      # iptables -I INPUT -p tcp --destination-port 4949 -j DROP
+      iptables:
+        chain: INPUT
+        protocol: tcp
+        destination_port: 4949
+        jump: DROP
+        state: absent
       become: yes
