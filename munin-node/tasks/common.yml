@@ -1,9 +1,13 @@
-# [0]
-- name: iptables open 4949
-  command: iptables -I INPUT -p tcp --destination-port 4949 -j ACCEPT
+- name: open port 4949
+  # iptables -I INPUT -p tcp --destination-port 4949 -j ACCEPT
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 4949
+    jump: ACCEPT
+    state: present
   become: yes
 
-# [1]
 - name: add edited munin-node.conf
   copy: src=munin-node.conf dest=/etc/munin/ mode=0644
   become: yes
