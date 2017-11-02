@@ -1,0 +1,26 @@
+- hosts: [munin-nodes]
+  tasks:
+    - name: stop munin-node processes
+      service: 
+        name: munin-node 
+        state: stopped 
+      become: yes
+    - name: completely remove munin-node, configs, and dependencies
+      # goal: sudo apt-get --purge autoremove munin-node :)
+      apt:
+        name: munin-node
+        state: absent # remove munin-node
+        purge: yes # remove configuration files of munin-node
+        autoremove: yes # remove hanging dependencies of munin-node
+      when: ansible_os_family == "Debian"
+      become: yes
+    - name: completely remove munin-node, configs, and dependencies
+      # goal: sudo yum remove munin-node && sudo package-cleanup -q --leaves | xargs -l1 yum -y remove :( 
+      yum:
+        name: munin-node
+        state: absent # remove munin-node
+      when: ansible_os_family == "RedHat"
+      become: yes
+    - name: iptables close 4949
+      command: iptables -I INPUT -p tcp --destination-port 4949 -j DROP
+      become: yes

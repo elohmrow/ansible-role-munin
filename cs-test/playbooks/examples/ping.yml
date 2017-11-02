@@ -1,0 +1,4 @@
+- hosts: [cs-test]
+  tasks:
+    - name: can i get a pong pong?
+      ping:
