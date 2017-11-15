@@ -4,3 +4,4 @@ packages:
   - libapache2-mod-fcgid
   - munin
   - mailx
+  - python-pip  

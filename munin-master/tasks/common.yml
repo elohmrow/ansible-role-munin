@@ -48,3 +48,10 @@
 #- name: add python alert script # really, just pick one!
 #  copy: src=send_email.py dest=/etc/munin/ mode=0755
 #  become: yes
+
+- name: install aws cli
+  command: pip install awscli --upgrade --user
+
+- name: add script to publish to sns topic
+  copy: src=publish_to_sns.sh dest=/etc/munin/ mode=0755
+  become: yes
